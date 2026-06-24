@@ -1,5 +1,6 @@
 package com.nta.quizapp;
 
+import com.nta.utils.MyConnectSingleton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +21,17 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        MyConnectSingleton.getInstance().close();
+    }
+    
+    
+
+    public App() {
     }
 
     static void setRoot(String fxml) throws IOException {

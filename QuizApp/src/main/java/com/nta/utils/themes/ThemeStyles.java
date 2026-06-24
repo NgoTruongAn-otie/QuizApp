@@ -4,10 +4,33 @@
  */
 package com.nta.utils.themes;
 
+import com.nta.quizapp.App;
+import javafx.scene.Scene;
+
 /**
  *
  * @author admin
  */
 public enum ThemeStyles {
-    DEFAULT, LIGHT, DARK;
+    DEFAULT {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemesManager.setFactory(new DefaultFactory());
+            ThemesManager.applyTheme(scene);
+        }
+    }, LIGHT {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemesManager.setFactory(new LightFactory());
+            ThemesManager.applyTheme(scene);
+        }
+    }, DARK {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemesManager.setFactory(new DarkFactory());
+            ThemesManager.applyTheme(scene);
+        }
+    };
+    
+    public abstract void updateTheme(Scene scene);
 }
